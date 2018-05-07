@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -9,7 +10,14 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
 import { StarsComponent } from './stars/stars.component';
+import { HomeComponent } from './home/home.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
+const routesConf: Routes = [
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'product/:title', component: ProductDetailComponent}
+];
 
 @NgModule({
   declarations: [
@@ -19,10 +27,13 @@ import { StarsComponent } from './stars/stars.component';
     FooterComponent,
     ProductComponent,
     SearchComponent,
-    StarsComponent
+    StarsComponent,
+    HomeComponent,
+    ProductDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routesConf)
   ],
   providers: [],
   bootstrap: [AppComponent]
