@@ -12,11 +12,12 @@ import { SearchComponent } from './search/search.component';
 import { StarsComponent } from './stars/stars.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductService } from './shared/product.service';
 
 const routesConf: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'product/:title', component: ProductDetailComponent}
+  {path: 'product/:productId', component: ProductDetailComponent}
 ];
 
 @NgModule({
@@ -35,7 +36,7 @@ const routesConf: Routes = [
     BrowserModule,
     RouterModule.forRoot(routesConf)
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
