@@ -13,6 +13,8 @@ import { StarsComponent } from './stars/stars.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductService } from './shared/product.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipe/filter.pipe';
 
 const routesConf: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -30,11 +32,14 @@ const routesConf: Routes = [
     SearchComponent,
     StarsComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routesConf)
+    RouterModule.forRoot(routesConf),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
