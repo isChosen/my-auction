@@ -53,6 +53,6 @@ export class Comment {
     public timestamp: string,
     public user: string,
     public rating: number,
-    public comment: string
+    public content: string
   ) {}
 }

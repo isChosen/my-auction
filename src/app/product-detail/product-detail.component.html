@@ -15,6 +15,13 @@
 </div>
 
 <div class="well">
+    <button type="button" class="btn btn-success" (click)="isHidden = !isHidden">发表评论</button>
+    <div [hidden]="isHidden">
+        <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
+        <textarea name="" id="" cols="80" rows="5" [(ngModel)]="newComment"></textarea>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="addComment()">提交评论</button>
+    </div>
     <div class="row" *ngFor="let comment of comments">
         <hr>
         <div class="col-md-12">
