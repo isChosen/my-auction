@@ -32,6 +32,10 @@ export class ProductService {
   getComments4ProductId(id: number): Comment[] {
     return this.comments.filter(comment => comment.productId === id); // 参数不带类型也可以
   }
+  // 返回商品类别
+  getAllCategories(): string[] {
+    return ['电子产品', '硬件设备', '图书'];
+  }
 
 }
 // 商品类
