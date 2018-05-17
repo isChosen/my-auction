@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   formModel: FormGroup;
   categories: string[];
 
-  constructor(fb: FormBuilder, productService: ProductService) {
+  constructor(fb: FormBuilder, private productService: ProductService) {
     this.formModel = fb.group({
       title: ['', Validators.minLength(3)],
       price: [null, this.positiveNumberValidator],
@@ -37,10 +37,11 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  // 提交方法
+  // 搜索方法
   onSearch() {
     if (this.formModel.valid) {
       console.log(this.formModel.value);
+      this.productService.searchEvent.emit(this.formModel.value);
     }
   }
 

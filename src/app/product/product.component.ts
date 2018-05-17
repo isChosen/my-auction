@@ -3,6 +3,7 @@ import { Product, ProductService } from '../shared/product.service';
 import { FormControl } from '@angular/forms';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product',
@@ -11,19 +12,23 @@ import 'rxjs/Rx';
 })
 export class ProductComponent implements OnInit {
 
-  private keyWord: string;
-  private searchIpt: FormControl = new FormControl();
-  private products: Array<Product>;
-  constructor(private productService: ProductService) {
-    this.searchIpt.valueChanges
-        .debounceTime(500)
-        .subscribe(
-          value => this.keyWord = value
-        );
-  }
+  private products: Observable<Product[]>;
+  private products2: Product[];
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.products = this.productService.getProducts();
+    this.productService.getProducts()
+        .subscribe(
+          products => {
+            console.log('products: ', products);
+            this.products2 = products;
+          }
+        );
+
+    this.productService.searchEvent.subscribe(
+      params => this.products = this.productService.search(params)
+    );
   }
 
 }

@@ -1,15 +1,15 @@
 <div class="thumbnail">
     <img src="http://placehold.it/800x300">
     <div>
-        <h4 class="pull-right">{{product.price}} 元</h4>
-        <h4>{{product.title}}</h4>
-        <p>{{product.desc}}</p>
+        <h4 class="pull-right">{{product?.price}} 元</h4>
+        <h4>{{product?.title}}</h4>
+        <p>{{product?.desc}}</p>
     </div>
     
     <div>
-        <p class="pull-right">{{comments.length}}</p>
+        <p class="pull-right">{{comments?.length}}</p>
         <p>
-            <app-stars [rating]="product.rating"></app-stars>
+            <app-stars [rating]="product?.rating"></app-stars>
         </p>
     </div>
 </div>
@@ -22,6 +22,7 @@
         <br>
         <button type="button" class="btn btn-primary" (click)="addComment()">提交评论</button>
     </div>
+    <!-- ngFor 循环不需要传到运算符?. 因其会自动判断循环的对象是否为空 -->
     <div class="row" *ngFor="let comment of comments">
         <hr>
         <div class="col-md-12">
